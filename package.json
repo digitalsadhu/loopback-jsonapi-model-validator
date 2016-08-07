@@ -1,0 +1,70 @@
+{
+  "name": "loopback-jsonapi-model-serializer",
+  "description": "JSONAPI Model serializer for loopback",
+  "version": "1.0.1",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitalsadhu/loopback-jsonapi-model-serializer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/digitalsadhu/loopback-jsonapi-model-serializer/issues"
+  },
+  "homepage": "https://github.com/digitalsadhu/loopback-jsonapi-model-serializer",
+  "author": {
+    "name": "Richard Walker",
+    "email": "digitalsadhu@gmail.com",
+    "url": "https://mediasuite.co.nz"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "lint": "standard --verbose | snazzy",
+    "pretest": "npm run lint",
+    "test:dev": "ava --watch",
+    "test": "ava --verbose",
+    "build": "babel src --presets babel-preset-es2015 --out-dir dist",
+    "prepublish": "npm test && npm prune && npm run build",
+    "preversion:patch": "npm run test",
+    "version:patch": "xyz -i patch",
+    "preversion:minor": "npm run test",
+    "version:minor": "xyz -i minor",
+    "preversion:major": "npm run test",
+    "version:major": "xyz -i major"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org"
+  },
+  "keywords": [
+    "loopback",
+    "model",
+    "serializer",
+    "jsonapi"
+  ],
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "loopback-jsonschema-types": "^1.0.0"
+  },
+  "devDependencies": {
+    "assert-diff": "^1.0.1",
+    "ava": "^0.15.2",
+    "babel-cli": "^6.10.1",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.9.0",
+    "chai": "^3.5.0",
+    "jsonapi-validator": "^2.1.0",
+    "jsonschema": "^1.1.0",
+    "loopback": "^2.29.1",
+    "loopback-datasource-juggler": "^2.47.0",
+    "power-assert": "^1.4.1",
+    "snazzy": "^4.0.0",
+    "standard": "^7.1.2",
+    "xyz": "^0.5.0"
+  },
+  "peerDependencies": {},
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
