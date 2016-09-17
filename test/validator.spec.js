@@ -65,7 +65,7 @@ test('`data.data.type` argument not given as a string', t => {
 })
 
 test('`data.data.id` argument not given when options.requireId is false', t => {
-  t.plan(1)
+  t.plan(2)
   const { Post } = t.context.app.models
   const data = {data: {type: 'posts'}}
   const options = {requireId: false}
@@ -73,6 +73,7 @@ test('`data.data.id` argument not given when options.requireId is false', t => {
   const valid = validator(data, Post, options)
 
   t.is(valid, true)
+  t.truthy(!data.data.id)
 })
 
 test('no `data.data.id` argument given when options.requireId is true', t => {
@@ -224,4 +225,15 @@ test('valid type of JSONAPI relationships.data (2)', t => {
   const valid = validator(data, Post)
 
   t.is(valid, true)
+})
+
+test('required fields', t => {
+  t.plan(1)
+  const ds = loopback.createDataSource('memory')
+  const Post = ds.createModel('post', {title: {type: String, required: true}})
+  const data = {data: {type: 'posts', id: '2', attributes: {}}}
+
+  const testValidator = () => validator(data, Post)
+
+  t.throws(testValidator)
 })

@@ -1,6 +1,7 @@
 'use strict'
 
 const _ = require('lodash')
+const {get, set} = _
 const Validator = require('jsonschema').Validator
 var validator = new Validator()
 const schemaTypes = require('loopback-jsonschema-types')
@@ -13,21 +14,22 @@ function foreignKeysForModel (model) {
   const relations = model.relations
   const keys = []
   Object.keys(relations)
-    .filter(relationName => relations[relationName].type === 'belongsTo')
+    .filter(relationName => get(relations, `${relationName}.type`) === 'belongsTo')
     .forEach(relationName => {
-      keys.push(relations[relationName].keyFrom)
-      if (relations[relationName].polymorphic) {
-        keys.push(relations[relationName].polymorphic.discriminator)
+      keys.push(get(relations, `${relationName}.keyFrom`))
+      if (get(relations, `${relationName}.polymorphic`)) {
+        keys.push(get(relations, `${relationName}.polymorphic.discriminator`))
       }
     })
   return keys
 }
 
-module.exports = (data, model, options = {requireId: true, allowForeignKeys: false, allowPrimaryKeys: false}) => {
-  let shouldCleanupId = false
+module.exports = (data = {}, model, options = {requireId: true, allowForeignKeys: false, allowPrimaryKeys: false}) => {
+  data = JSON.parse(JSON.stringify(data))
+
+  // HACK: Setup a fake id so that jsonschema won't fail on missing id.
   if (options.requireId === false) {
-    shouldCleanupId = true
-    data.data.id = '1'
+    set(data, 'data.id', '1')
   }
 
   const schema = {
@@ -53,10 +55,10 @@ module.exports = (data, model, options = {requireId: true, allowForeignKeys: fal
     additionalProperties: false
   }
 
-  const properties = model.definition.rawProperties
+  const properties = get(model, 'definition.rawProperties')
   Object.keys(properties).forEach(propertyName => {
-    const property = properties[propertyName]
-    const attributes = schema.properties.data.properties.attributes
+    const property = get(properties, propertyName)
+    const attributes = get(schema, 'properties.data.properties.attributes')
 
     const pk = primaryKeyForModel(model)
     const fks = foreignKeysForModel(model)
@@ -69,29 +71,27 @@ module.exports = (data, model, options = {requireId: true, allowForeignKeys: fal
       if (_.includes(fks, propertyName)) return
     }
 
-    attributes.properties = attributes.properties || {}
-    attributes.properties[propertyName] = schemaTypes(property)
+    set(attributes, `properties.${propertyName}`, schemaTypes(property))
 
-    if (property.required === 'true') {
+    if (property.required === true) {
       attributes.required = attributes.required || []
       attributes.required.push(propertyName)
     }
   })
-  schema.properties.data.properties.attributes.additionalProperties = false
+  set(schema, 'properties.data.properties.attributes.additionalProperties', false)
 
-  const relations = model.relations
+  const {relations} = model
   Object.keys(relations).forEach(relationName => {
-    const relation = relations[relationName]
-    const relationships = schema.properties.data.properties.relationships
+    const relation = get(relations, relationName)
+    const relationships = get(schema, 'properties.data.properties.relationships')
 
-    relationships.properties = relationships.properties || {}
-    relationships.properties[relationName] = {
+    set(relationships, `properties.${relationName}`, {
       type: 'object',
       properties: {links: {type: 'object'}, meta: {type: 'object'}}
-    }
+    })
 
     if (relation.type === 'belongsTo') {
-      relationships.properties[relationName].properties.data = {
+      set(relationships, `properties.${relationName}.properties.data`, {
         anyOf: [
           {type: 'null'},
           {
@@ -101,9 +101,9 @@ module.exports = (data, model, options = {requireId: true, allowForeignKeys: fal
             properties: {id: {type: 'string'}, type: {type: 'string'}, meta: {type: 'object'}}
           }
         ]
-      }
+      })
     } else {
-      relationships.properties[relationName].properties.data = {
+      set(relationships, `properties.${relationName}.properties.data`, {
         type: 'array',
         items: {
           type: 'object',
@@ -112,20 +112,15 @@ module.exports = (data, model, options = {requireId: true, allowForeignKeys: fal
           properties: {id: {type: 'string'}, type: {type: 'string'}, meta: {type: 'object'}}
         },
         uniqueItems: true
-      }
+      })
     }
   })
-  schema.properties.data.properties.relationships.additionalProperties = false
-  // console.log(JSON.stringify(schema, null, 2))
+  set(schema, 'properties.data.properties.relationships.additionalProperties', false)
 
   const validation = validator.validate(data, schema)
 
   if (!validation.valid) {
     throw new Error(validation.errors)
-  }
-
-  if (options.requireId === false && shouldCleanupId) {
-    delete data.data.id
   }
 
   return true
