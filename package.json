@@ -12,11 +12,7 @@
     "url": "https://github.com/digitalsadhu/loopback-jsonapi-model-serializer/issues"
   },
   "homepage": "https://github.com/digitalsadhu/loopback-jsonapi-model-serializer",
-  "author": {
-    "name": "Richard Walker",
-    "email": "digitalsadhu@gmail.com",
-    "url": "https://mediasuite.co.nz"
-  },
+  "author": "Richard Walker <digitalsadhu@gmail.com> (http://lovebeer.nz/)",
   "engines": {
     "node": ">=6.0.0"
   },
@@ -66,5 +62,39 @@
   "peerDependencies": {},
   "standard": {
     "parser": "babel-eslint"
-  }
+  },
+  "maintainers": [],
+  "contributors": [
+    "Richard Walker <digitalsadhu@gmail.com> (http://lovebeer.nz/)"
+  ],
+  "badges": {
+    "list": [
+      [
+        "badge",
+        {
+          "image": "https://mediasuite.co.nz/ms-badge.png",
+          "url": "https://mediasuite.co.nz",
+          "title": "The Media Suite",
+          "alt": "The Media Suite"
+        }
+      ],
+      "---",
+      [
+        "badge",
+        {
+          "image": "https://nodei.co/npm/loopback-jsonapi-model-validator.png?downloads=true&stars=true",
+          "url": "https://nodei.co/npm/loopback-jsonapi-model-validator"
+        }
+      ],
+      "---",
+      "travisci",
+      "npmversion",
+      "npmversion",
+      "daviddm",
+      "daviddmdev"
+    ]
+  },
+  "sponsors": [
+    "The Media Suite (http://mediasuite.co.nz)"
+  ]
 }
