@@ -13,7 +13,7 @@
 <br class="badge-separator" />
 <span class="badge-travisci"><a href="http://travis-ci.org/digitalsadhu/loopback-jsonapi-model-serializer" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/digitalsadhu/loopback-jsonapi-model-serializer/master.svg" alt="Travis CI Build Status" /></a></span>
 <span class="badge-npmversion"><a href="https://npmjs.org/package/loopback-jsonapi-model-serializer" title="View this project on NPM"><img src="https://img.shields.io/npm/v/loopback-jsonapi-model-serializer.svg" alt="NPM version" /></a></span>
-<span class="badge-npmversion"><a href="https://npmjs.org/package/loopback-jsonapi-model-serializer" title="View this project on NPM"><img src="https://img.shields.io/npm/v/loopback-jsonapi-model-serializer.svg" alt="NPM version" /></a></span>
+<span class="badge-npmdownloads"><a href="https://npmjs.org/package/loopback-jsonapi-model-serializer" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/loopback-jsonapi-model-serializer.svg" alt="NPM downloads" /></a></span>
 <span class="badge-daviddm"><a href="https://david-dm.org/digitalsadhu/loopback-jsonapi-model-serializer" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/digitalsadhu/loopback-jsonapi-model-serializer.svg" alt="Dependency Status" /></a></span>
 <span class="badge-daviddmdev"><a href="https://david-dm.org/digitalsadhu/loopback-jsonapi-model-serializer#info=devDependencies" title="View the status of this project's development dependencies on DavidDM"><img src="https://img.shields.io/david/dev/digitalsadhu/loopback-jsonapi-model-serializer.svg" alt="Dev Dependency Status" /></a></span>
 
