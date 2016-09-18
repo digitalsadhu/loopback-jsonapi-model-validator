@@ -1,6 +1,6 @@
 <!-- TITLE/ -->
 
-<h1>loopback-jsonapi-model-serializer</h1>
+<h1>loopback-jsonapi-model-validator</h1>
 
 <!-- /TITLE -->
 
@@ -11,18 +11,18 @@
 <br class="badge-separator" />
 <span class="badge-badge"><a href="https://nodei.co/npm/loopback-jsonapi-model-validator"><img src="https://nodei.co/npm/loopback-jsonapi-model-validator.png?downloads=true&stars=true" /></a></span>
 <br class="badge-separator" />
-<span class="badge-travisci"><a href="http://travis-ci.org/digitalsadhu/loopback-jsonapi-model-serializer" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/digitalsadhu/loopback-jsonapi-model-serializer/master.svg" alt="Travis CI Build Status" /></a></span>
-<span class="badge-npmversion"><a href="https://npmjs.org/package/loopback-jsonapi-model-serializer" title="View this project on NPM"><img src="https://img.shields.io/npm/v/loopback-jsonapi-model-serializer.svg" alt="NPM version" /></a></span>
-<span class="badge-npmdownloads"><a href="https://npmjs.org/package/loopback-jsonapi-model-serializer" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/loopback-jsonapi-model-serializer.svg" alt="NPM downloads" /></a></span>
-<span class="badge-daviddm"><a href="https://david-dm.org/digitalsadhu/loopback-jsonapi-model-serializer" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/digitalsadhu/loopback-jsonapi-model-serializer.svg" alt="Dependency Status" /></a></span>
-<span class="badge-daviddmdev"><a href="https://david-dm.org/digitalsadhu/loopback-jsonapi-model-serializer#info=devDependencies" title="View the status of this project's development dependencies on DavidDM"><img src="https://img.shields.io/david/dev/digitalsadhu/loopback-jsonapi-model-serializer.svg" alt="Dev Dependency Status" /></a></span>
+<span class="badge-travisci"><a href="http://travis-ci.org/digitalsadhu/loopback-jsonapi-model-validator" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/digitalsadhu/loopback-jsonapi-model-validator/master.svg" alt="Travis CI Build Status" /></a></span>
+<span class="badge-npmversion"><a href="https://npmjs.org/package/loopback-jsonapi-model-validator" title="View this project on NPM"><img src="https://img.shields.io/npm/v/loopback-jsonapi-model-validator.svg" alt="NPM version" /></a></span>
+<span class="badge-npmdownloads"><a href="https://npmjs.org/package/loopback-jsonapi-model-validator" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/loopback-jsonapi-model-validator.svg" alt="NPM downloads" /></a></span>
+<span class="badge-daviddm"><a href="https://david-dm.org/digitalsadhu/loopback-jsonapi-model-validator" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/digitalsadhu/loopback-jsonapi-model-validator.svg" alt="Dependency Status" /></a></span>
+<span class="badge-daviddmdev"><a href="https://david-dm.org/digitalsadhu/loopback-jsonapi-model-validator#info=devDependencies" title="View the status of this project's development dependencies on DavidDM"><img src="https://img.shields.io/david/dev/digitalsadhu/loopback-jsonapi-model-validator.svg" alt="Dev Dependency Status" /></a></span>
 
 <!-- /BADGES -->
 
 
 <!-- DESCRIPTION/ -->
 
-JSONAPI Model serializer for loopback
+JSONAPI Model validator for loopback
 
 <!-- /DESCRIPTION -->
 
@@ -32,8 +32,8 @@ JSONAPI Model serializer for loopback
 <h2>Install</h2>
 
 <a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>NPM</h3></a><ul>
-<li>Install: <code>npm install --save loopback-jsonapi-model-serializer</code></li>
-<li>Module: <code>require('loopback-jsonapi-model-serializer')</code></li></ul>
+<li>Install: <code>npm install --save loopback-jsonapi-model-validator</code></li>
+<li>Module: <code>require('loopback-jsonapi-model-validator')</code></li></ul>
 
 <!-- /INSTALL -->
 
@@ -46,7 +46,7 @@ Usage here
 
 <h2>History</h2>
 
-<a href="https://github.com/digitalsadhu/loopback-jsonapi-model-serializer/releases">Discover the release history by heading on over to the releases page.</a>
+<a href="https://github.com/digitalsadhu/loopback-jsonapi-model-validator/releases">Discover the release history by heading on over to the releases page.</a>
 
 <!-- /HISTORY -->
 
@@ -73,7 +73,7 @@ Become a sponsor!
 
 These amazing people have contributed code to this project:
 
-<ul><li><a href="http://lovebeer.nz/">Richard Walker</a> — <a href="https://github.com/digitalsadhu/loopback-jsonapi-model-serializer/commits?author=digitalsadhu" title="View the GitHub contributions of Richard Walker on repository digitalsadhu/loopback-jsonapi-model-serializer">view contributions</a></li></ul>
+<ul><li><a href="http://lovebeer.nz/">Richard Walker</a> — <a href="https://github.com/digitalsadhu/loopback-jsonapi-model-validator/commits?author=digitalsadhu" title="View the GitHub contributions of Richard Walker on repository digitalsadhu/loopback-jsonapi-model-validator">view contributions</a></li></ul>
 
 
 
