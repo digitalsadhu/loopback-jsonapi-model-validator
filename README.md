@@ -40,7 +40,27 @@ JSONAPI data validator for loopback models
 
 ## Usage
 
-Usage here
+### Basic usage
+```js
+const validate = require('loopback-jsonapi-model-validator')
+
+try {
+  validate(data, Model, options)
+} catch (e) {
+  // will contain descriptive validation errors if validation fails
+}
+```
+
+### options
+
+#### options.requireId
+When true, `data` will be required to contain a valid `id` property. Default: `true`
+
+#### options.validatePrimaryKey
+When true, primary key will be validated. When false will be ignored. Default: `false`
+
+#### options.validateForeignKeys
+When true, foreign keys will be validated. When false will be ignored. Default: `false`
 
 <!-- HISTORY/ -->
 

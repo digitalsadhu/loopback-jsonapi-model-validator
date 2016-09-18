@@ -58,11 +58,11 @@ function addAttributeSchemas (model, schema, options) {
     const property = get(properties, propertyName)
     const attributes = get(schema, 'properties.data.properties.attributes')
 
-    if (options.allowPrimaryKeys !== true) {
+    if (options.validatePrimaryKey !== true) {
       if (primaryKey === propertyName) return
     }
 
-    if (options.allowForeignKeys !== true) {
+    if (options.validateForeignKeys !== true) {
       if (_.includes(foreignKeys, propertyName)) return
     }
 
@@ -115,7 +115,7 @@ function addRelationsSchemas (model, schema, options) {
   set(schema, 'properties.data.properties.relationships.additionalProperties', false)
 }
 
-module.exports = (data = {}, model, options = {requireId: true, allowForeignKeys: false, allowPrimaryKeys: false}) => {
+module.exports = (data = {}, model, options = {requireId: true, validateForeignKeys: false, validatePrimaryKey: false}) => {
   data = JSON.parse(JSON.stringify(data))
 
   // HACK: Setup a fake id so that jsonschema won't fail on missing id.
