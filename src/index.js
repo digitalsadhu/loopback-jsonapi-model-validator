@@ -3,7 +3,7 @@
 const _ = require('lodash')
 const {get, set} = _
 const Validator = require('jsonschema').Validator
-var validator = new Validator()
+const validator = new Validator()
 const schemaTypes = require('loopback-jsonschema-types')
 
 function primaryKeyForModel (model) {
