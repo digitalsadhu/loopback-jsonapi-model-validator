@@ -160,9 +160,7 @@ test('valid keys in JSONAPI attributes hash', t => {
 test('valid keys in JSONAPI relationships hash (1)', t => {
   t.plan(1)
   const { Post } = t.context.app.models
-  const data = {data: {type: 'posts', id: '2', relationships: {
-    comments: {}
-  }}}
+  const data = {data: {type: 'posts', id: '2', relationships: {comments: {}}}}
 
   const valid = validator(data, Post)
 
@@ -172,9 +170,7 @@ test('valid keys in JSONAPI relationships hash (1)', t => {
 test('valid keys in JSONAPI relationships hash (1)', t => {
   t.plan(1)
   const { Comment } = t.context.app.models
-  const data = {data: {type: 'comments', id: '1', relationships: {
-    post: {}
-  }}}
+  const data = {data: {type: 'comments', id: '1', relationships: {post: {}}}}
 
   const valid = validator(data, Comment)
 
@@ -194,9 +190,7 @@ test('invalid key in JSONAPI relationships hash', t => {
 test('invalid type of JSONAPI relationships.data', t => {
   t.plan(1)
   const { Post } = t.context.app.models
-  const data = {data: {type: 'posts', id: '2', relationships: {
-    comments: {data: {}}}
-  }}
+  const data = {data: {type: 'posts', id: '2', relationships: {comments: {data: {}}}}}
 
   const testValidator = () => validator(data, Post)
 
@@ -206,9 +200,7 @@ test('invalid type of JSONAPI relationships.data', t => {
 test('valid type of JSONAPI relationships.data (1)', t => {
   t.plan(1)
   const { Comment } = t.context.app.models
-  const data = {data: {type: 'comments', id: '2', relationships: {
-    post: {data: null}}
-  }}
+  const data = {data: {type: 'comments', id: '2', relationships: {post: {data: null}}}}
 
   const valid = validator(data, Comment)
 
@@ -218,9 +210,7 @@ test('valid type of JSONAPI relationships.data (1)', t => {
 test('valid type of JSONAPI relationships.data (2)', t => {
   t.plan(1)
   const { Post } = t.context.app.models
-  const data = {data: {type: 'posts', id: '2', relationships: {
-    comments: {data: []}}
-  }}
+  const data = {data: {type: 'posts', id: '2', relationships: {comments: {data: []}}}}
 
   const valid = validator(data, Post)
 
