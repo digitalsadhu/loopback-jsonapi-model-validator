@@ -43,13 +43,31 @@ JSONAPI data validator for loopback models
 ### Basic usage
 ```js
 const validate = require('loopback-jsonapi-model-validator')
+const data = {id: '1', type: 'posts', attributes: {title: 'My Post'}}
+const Post = app.models.Post
+const options = {requireId: false}
 
 try {
-  validate(data, Model, options)
+  validate(data, Post, options)
 } catch (e) {
-  // will contain descriptive validation errors if validation fails
+  // e will contain descriptive validation errors if validation fails
 }
 ```
+
+### Method signature
+
+```js
+validate(data, Model, options)
+```
+
+#### data
+JSON API formatted data. The data to be validated as valid JSON API data.
+
+#### Model
+Loopback model. This is used to infer things such as attributes and relationships about the data payload.
+
+#### options
+Additional options, see below.
 
 ### options
 
