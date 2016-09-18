@@ -10,29 +10,23 @@ function primaryKeyForModel (model) {
   return model.getIdName()
 }
 
-function foreignKeysForModel (model) {
-  const relations = model.relations
-  const keys = []
-  Object.keys(relations)
-    .filter(relationName => get(relations, `${relationName}.type`) === 'belongsTo')
-    .forEach(relationName => {
-      keys.push(get(relations, `${relationName}.keyFrom`))
-      if (get(relations, `${relationName}.polymorphic`)) {
-        keys.push(get(relations, `${relationName}.polymorphic.discriminator`))
-      }
-    })
-  return keys
+function foreignKeysForRelation (relation) {
+  const {type, keyFrom, polymorphic} = relation
+  if (type !== 'belongsTo') return []
+  let descriminator = get(relation, 'polymorphic.discriminator')
+  if (polymorphic) return [keyFrom, descriminator]
+  return [keyFrom]
 }
 
-module.exports = (data = {}, model, options = {requireId: true, allowForeignKeys: false, allowPrimaryKeys: false}) => {
-  data = JSON.parse(JSON.stringify(data))
+function foreignKeysForModel (model) {
+  const relations = model.relations
+  return Object.keys(relations).reduce((prev, curr) => {
+    return prev.concat(foreignKeysForRelation(get(relations, curr)))
+  }, [])
+}
 
-  // HACK: Setup a fake id so that jsonschema won't fail on missing id.
-  if (options.requireId === false) {
-    set(data, 'data.id', '1')
-  }
-
-  const schema = {
+function baseSchema () {
+  return {
     type: 'object',
     required: ['data'],
     properties: {
@@ -54,21 +48,22 @@ module.exports = (data = {}, model, options = {requireId: true, allowForeignKeys
     },
     additionalProperties: false
   }
+}
 
+function addAttributeSchemas (model, schema, options) {
+  const primaryKey = primaryKeyForModel(model)
+  const foreignKeys = foreignKeysForModel(model)
   const properties = get(model, 'definition.rawProperties')
   Object.keys(properties).forEach(propertyName => {
     const property = get(properties, propertyName)
     const attributes = get(schema, 'properties.data.properties.attributes')
 
-    const pk = primaryKeyForModel(model)
-    const fks = foreignKeysForModel(model)
-
     if (options.allowPrimaryKeys !== true) {
-      if (pk === propertyName) return
+      if (primaryKey === propertyName) return
     }
 
     if (options.allowForeignKeys !== true) {
-      if (_.includes(fks, propertyName)) return
+      if (_.includes(foreignKeys, propertyName)) return
     }
 
     set(attributes, `properties.${propertyName}`, schemaTypes(property))
@@ -79,7 +74,9 @@ module.exports = (data = {}, model, options = {requireId: true, allowForeignKeys
     }
   })
   set(schema, 'properties.data.properties.attributes.additionalProperties', false)
+}
 
+function addRelationsSchemas (model, schema, options) {
   const {relations} = model
   Object.keys(relations).forEach(relationName => {
     const relation = get(relations, relationName)
@@ -116,12 +113,22 @@ module.exports = (data = {}, model, options = {requireId: true, allowForeignKeys
     }
   })
   set(schema, 'properties.data.properties.relationships.additionalProperties', false)
+}
+
+module.exports = (data = {}, model, options = {requireId: true, allowForeignKeys: false, allowPrimaryKeys: false}) => {
+  data = JSON.parse(JSON.stringify(data))
+
+  // HACK: Setup a fake id so that jsonschema won't fail on missing id.
+  if (options.requireId === false) {
+    set(data, 'data.id', '1')
+  }
+
+  const schema = baseSchema()
+  addAttributeSchemas(model, schema, options)
+  addRelationsSchemas(model, schema, options)
 
   const validation = validator.validate(data, schema)
-
-  if (!validation.valid) {
-    throw new Error(validation.errors)
-  }
+  if (!validation.valid) throw new Error(validation.errors)
 
   return true
 }
