@@ -1,17 +1,17 @@
 {
-  "name": "loopback-jsonapi-model-serializer",
-  "description": "JSONAPI Model serializer for loopback",
+  "name": "loopback-jsonapi-model-validator",
+  "description": "JSONAPI Model validator for loopback",
   "version": "1.0.1",
   "license": "MIT",
   "main": "./dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/digitalsadhu/loopback-jsonapi-model-serializer.git"
+    "url": "https://github.com/digitalsadhu/loopback-jsonapi-model-validator.git"
   },
   "bugs": {
-    "url": "https://github.com/digitalsadhu/loopback-jsonapi-model-serializer/issues"
+    "url": "https://github.com/digitalsadhu/loopback-jsonapi-model-validator/issues"
   },
-  "homepage": "https://github.com/digitalsadhu/loopback-jsonapi-model-serializer",
+  "homepage": "https://github.com/digitalsadhu/loopback-jsonapi-model-validator",
   "author": "Richard Walker <digitalsadhu@gmail.com> (http://lovebeer.nz/)",
   "engines": {
     "node": ">=6.0.0"
@@ -36,7 +36,7 @@
   "keywords": [
     "loopback",
     "model",
-    "serializer",
+    "validator",
     "jsonapi"
   ],
   "dependencies": {
