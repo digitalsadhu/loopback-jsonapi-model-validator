@@ -1,7 +1,7 @@
 {
   "name": "loopback-jsonapi-model-validator",
   "description": "JSONAPI data validator for loopback models",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "main": "./dist/index.js",
   "repository": {
