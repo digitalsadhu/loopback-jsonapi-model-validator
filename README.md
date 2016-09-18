@@ -22,7 +22,7 @@
 
 <!-- DESCRIPTION/ -->
 
-JSONAPI Model validator for loopback
+JSONAPI data validator for loopback models
 
 <!-- /DESCRIPTION -->
 
